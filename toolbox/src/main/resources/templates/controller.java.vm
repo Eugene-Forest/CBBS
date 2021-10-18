@@ -1,0 +1,56 @@
+package ${package.Controller};
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};import javax.annotation.Resource;
+#end
+
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+
+    @Resource
+    private $!{table.serviceName} $!{table.entityPath}Service;
+
+
+    /**
+     * 分页 $!{table.comment}
+     */
+    @GetMapping("/list")
+    @ApiOperationSupport(order = 1)
+    @ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+    public R<IPage<$!{entity}>> list($!{entity} $!{table.entityPath}, Query query) {
+        IPage<$!{entity}> pages = $!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath}));
+        return R.data($!{entity}Wrapper.build().pageVO(pages));
+    }
+
+
+}
+#end
