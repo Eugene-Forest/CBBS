@@ -30,18 +30,22 @@
         <module>toolbox</module>
     </modules>
 
-    <!-- 版本说明：这里统一管理依赖的版本号 -->
-    <dependencies>
-        <dependency>
-            <groupId>org.eugeneforest</groupId>
-            <artifactId>cbbs</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eugeneforest</groupId>
-            <artifactId>toolbox</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <!--dependencyManagement用来解决子模块在继承了父模块时出现的循环依赖；
+    实现功能就是在我们子项目继承父项目的时候,并不会引入所有的dependency,而是子项目写了哪个就引入哪个。-->
+    <dependencyManagement>
+        <!-- 版本说明：这里统一管理依赖的版本号 -->
+        <dependencies>
+            <dependency>
+                <groupId>org.eugeneforest</groupId>
+                <artifactId>cbbs</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eugeneforest</groupId>
+                <artifactId>toolbox</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

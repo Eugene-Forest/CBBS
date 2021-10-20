@@ -1,11 +1,30 @@
 package ${package.Controller};
 
-import org.springframework.stereotype.Controller;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import javax.annotation.Resource;
+import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import org.eugeneforest.toolbox.api.Query;
+import org.eugeneforest.toolbox.api.R;
+import org.eugeneforest.toolbox.common.Func;
+
+import org.eugeneforest.toolbox.mp.tools.CustomizedCondition;
+
+import $!{package.Service}.$!{table.serviceName};
+import $!{package.Entity}.$!{table.entityName};
+
 #if(${restControllerStyle})
 import org.springframework.web.bind.annotation.RestController;
 #else
-import org.springframework.stereotype.Controller;
+
 #end
 #if(${superControllerClassPackage})
 import ${superControllerClassPackage};import javax.annotation.Resource;
@@ -25,10 +44,8 @@ import ${superControllerClassPackage};import javax.annotation.Resource;
 @Controller
 #end
 @RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
-
 #if(${kotlin})
 class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
-
 #else
 #if(${superControllerClass})
 public class ${table.controllerName} extends ${superControllerClass} {
@@ -41,15 +58,60 @@ public class ${table.controllerName} {
 
 
     /**
-     * 分页 $!{table.comment}
+     * 新增 $!{table.comment}
      */
-    @GetMapping("/list")
+    @PostMapping("/save")
     @ApiOperationSupport(order = 1)
-    @ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
-    public R<IPage<$!{entity}>> list($!{entity} $!{table.entityPath}, Query query) {
-        IPage<$!{entity}> pages = $!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath}));
-        return R.data($!{entity}Wrapper.build().pageVO(pages));
+    @ApiOperation(value = "新增", notes = "传入$!{table.entityPath}")
+    public R save(@Valid @RequestBody $!{entity} $!{table.entityPath}) {
+        return R.status($!{table.entityPath}Service.save($!{table.entityPath}));
     }
+
+    /**
+     * 删除 $!{table.comment}
+     */
+    @PostMapping("/remove")
+    @ApiOperationSupport(order = 2)
+    @ApiOperation(value = "删除", notes = "传入ids")
+    public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
+        return R.status($!{table.entityPath}Service.removeByIds(Func.toLongList(ids)));
+    }
+
+    /**
+     * 修改 $!{table.comment}
+     */
+    @PostMapping("/update")
+    @ApiOperationSupport(order = 3)
+    @ApiOperation(value = "修改", notes = "传入$!{table.entityPath}")
+    public R update(@Valid @RequestBody $!{entity} $!{table.entityPath}) {
+        return R.status($!{table.entityPath}Service.updateById($!{table.entityPath}));
+    }
+
+    /**
+     * 新增或修改 $!{table.comment}
+     */
+    @PostMapping("/submit")
+    @ApiOperationSupport(order = 4)
+    @ApiOperation(value = "新增或修改", notes = "传入$!{table.entityPath}")
+    public R submit(@Valid @RequestBody $!{entity} $!{table.entityPath}) {
+        return R.status($!{table.entityPath}Service.saveOrUpdate($!{table.entityPath}));
+    }
+
+    /**
+     * 自定义分页 $!{table.comment}
+     */
+    @GetMapping("/page")
+    @ApiOperationSupport(order = 5)
+    @ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+    public R<IPage<$!{entity}>> page($!{entity} $!{table.entityPath}, Query query) {
+        IPage<$!{entity}> pages = $!{table.entityPath}Service.page(CustomizedCondition.getPage(query),
+                CustomizedCondition.getQueryWrapper($!{table.entityPath}).orderByDesc("update_time"));
+        return R.data(pages);
+    }
+
+
+
+
 
 
 }

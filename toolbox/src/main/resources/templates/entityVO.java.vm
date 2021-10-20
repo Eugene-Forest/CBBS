@@ -1,0 +1,24 @@
+
+package ${package.Other}.${entity}VO;
+
+import ${package.Entity};
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * <p>
+ * $!{table.comment} 实体类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "${entity}VO对象", description = "$!{table.comment}")
+public class ${entity}VO extends ${entity} {
+
+    private static final long serialVersionUID = 1L;
+
+}
