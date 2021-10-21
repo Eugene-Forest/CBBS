@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import org.eugeneforest.toolbox.mp.base.CustomizedEntity;
 import org.eugeneforest.toolbox.mp.base.CustomizedService;
 import org.eugeneforest.toolbox.mp.base.CustomizedServiceImpl;
-import org.eugeneforest.toolbox.mp.sqlinjector.mapper.CustomizedMapper;
+import org.eugeneforest.toolbox.mp.component.sqlinjector.mapper.CustomizedMapper;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package org.eugeneforest.toolbox.mp.sqlinjector.methods;
+package org.eugeneforest.toolbox.mp.component.sqlinjector.methods;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;

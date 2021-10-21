@@ -1,9 +1,8 @@
-package org.eugeneforest.cbbs.common.config;
+package org.eugeneforest.toolbox.mp.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * mybatis plus 【分页插件】 的配置
  */
 @Configuration
-@MapperScan("org.eugeneforest.cbbs.*.mapper*")
 public class MpConfig {
 
     @Bean

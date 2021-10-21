@@ -1,11 +1,11 @@
-package org.eugeneforest.toolbox.mp.sqlinjector;
+package org.eugeneforest.toolbox.mp.component.sqlinjector;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
-import org.eugeneforest.toolbox.mp.sqlinjector.methods.ChangeStatus;
-import org.eugeneforest.toolbox.mp.sqlinjector.methods.LogicDeleteByBatchIds;
-import org.eugeneforest.toolbox.mp.sqlinjector.methods.LogicDeleteById;
+import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.ChangeStatus;
+import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.LogicDeleteByBatchIds;
+import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.LogicDeleteById;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,8 +21,6 @@ public class CustomizedSqlInjector extends DefaultSqlInjector {
     /**
      * 注意：需要作为一个组件注入才会生效
      */
-    public CustomizedSqlInjector() {
-    }
 
     /**
      * 如果只需增加方法，保留MP自带方法

@@ -1,10 +1,7 @@
 package org.eugeneforest.toolbox.mp.base;
 
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -49,7 +46,7 @@ public class CustomizedEntity implements Serializable {
             pattern = "yyyy-MM-dd HH:mm:ss"
     )
     @ApiModelProperty("创建时间")
-    @TableField("create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
     @JsonSerialize(
@@ -66,9 +63,9 @@ public class CustomizedEntity implements Serializable {
             pattern = "yyyy-MM-dd HH:mm:ss"
     )
     @ApiModelProperty("更新时间")
-    @TableField("update_time")
-
+    @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
+
     @ApiModelProperty("业务状态")
     private Integer status;
 

@@ -28,6 +28,7 @@
     <modules>
         <module>cbbs</module>
         <module>toolbox</module>
+        <module>HomePage</module>
     </modules>
 
     <!--dependencyManagement用来解决子模块在继承了父模块时出现的循环依赖；
@@ -43,6 +44,11 @@
             <dependency>
                 <groupId>org.eugeneforest</groupId>
                 <artifactId>toolbox</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eugeneforest</groupId>
+                <artifactId>HomePage</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

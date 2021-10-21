@@ -2,7 +2,7 @@ package org.eugeneforest.toolbox.mp.base;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.eugeneforest.toolbox.mp.sqlinjector.mapper.CustomizedMapper;
+import org.eugeneforest.toolbox.mp.component.sqlinjector.mapper.CustomizedMapper;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
