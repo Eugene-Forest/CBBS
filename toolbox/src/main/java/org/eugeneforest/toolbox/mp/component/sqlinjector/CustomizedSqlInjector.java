@@ -3,10 +3,7 @@ package org.eugeneforest.toolbox.mp.component.sqlinjector;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
-import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.ChangeStatus;
-import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.LogicDeleteByBatchIds;
-import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.LogicDeleteById;
-import org.springframework.stereotype.Component;
+import org.eugeneforest.toolbox.mp.component.sqlinjector.methods.*;
 
 import java.util.List;
 
@@ -15,7 +12,6 @@ import java.util.List;
  *
  * @author Eugene-Forest
  */
-@Component
 public class CustomizedSqlInjector extends DefaultSqlInjector {
 
     /**
@@ -34,7 +30,10 @@ public class CustomizedSqlInjector extends DefaultSqlInjector {
         //添加自定义方法
         methodList.add(new LogicDeleteByBatchIds());
         methodList.add(new LogicDeleteById());
-        methodList.add(new ChangeStatus());
+        methodList.add(new ChangeStatusByBatchIds());
+        methodList.add(new ChangeStatusById());
+        methodList.add(new DeletedByBatchIds());
+        methodList.add(new DeleteById());
         return methodList;
     }
 }

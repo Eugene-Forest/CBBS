@@ -2,7 +2,6 @@ package org.eugeneforest.cbbs;
 
 import org.eugeneforest.cbbs.base.entity.UserTable;
 import org.eugeneforest.cbbs.base.service.UserTableService;
-import org.eugeneforest.toolbox.common.utils.JsonUtil;
 import org.eugeneforest.toolbox.mp.tools.CustomizedCondition;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,16 +20,17 @@ class CbbsApplicationTests {
     @Test
     void contextLoads() {
         UserTable user=new UserTable();
-        user.setId(1244000L);
+        user.setId(888L);
         user.setUserName("eugene");
         userTableService.saveOrUpdate(user);
-        user=userTableService.getOne(CustomizedCondition.getQueryWrapper(user));
-        System.out.println(JsonUtil.getJsonFromObj(user));
         user.setBirthday(new Date());
         userTableService.saveOrUpdate(user);
+        userTableService.remove(CustomizedCondition.getQueryWrapper(user).eq("id", user.getId()));
         List<Long> list=new ArrayList<>();
+        list.add(3L);
         list.add(2L);
-        userTableService.changeStatus(list, 10);
+        userTableService.changeStatusByBatchIds(list, 10);
+        userTableService.deletedByBatchIds(list);
     }
 
 }

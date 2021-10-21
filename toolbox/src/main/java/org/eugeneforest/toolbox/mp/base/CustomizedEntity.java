@@ -66,12 +66,14 @@ public class CustomizedEntity implements Serializable {
     @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
-    @ApiModelProperty("业务状态")
-    private Integer status;
+    @Version
+    @ApiModelProperty("版本状态")
+    @TableField("version_status")
+    private Integer versionStatus=0;
 
     @ApiModelProperty("是否已删除")
     @TableField("is_deleted")
-    private Integer isDeleted;
+    private Integer isDeleted=0;
 
     public Long getId() {
         return this.id;
@@ -95,10 +97,6 @@ public class CustomizedEntity implements Serializable {
 
     public Date getUpdateTime() {
         return this.updateTime;
-    }
-
-    public Integer getStatus() {
-        return this.status;
     }
 
     public Integer getIsDeleted() {
@@ -135,16 +133,20 @@ public class CustomizedEntity implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public void setStatus(final Integer status) {
-        this.status = status;
-    }
-
     public void setIsDeleted(final Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
 
     @Override
     public String toString() {
-        return "BaseEntity(id=" + this.getId() + ", createUser=" + this.getCreateUser() + ", createDept=" + this.getCreateDept() + ", createTime=" + this.getCreateTime() + ", updateUser=" + this.getUpdateUser() + ", updateTime=" + this.getUpdateTime() + ", status=" + this.getStatus() + ", isDeleted=" + this.getIsDeleted() + ")";
+        return "BaseEntity(id=" + this.getId() + ", createUser=" + this.getCreateUser() + ", createDept=" + this.getCreateDept() + ", createTime=" + this.getCreateTime() + ", updateUser=" + this.getUpdateUser() + ", updateTime=" + this.getUpdateTime() + ", version status=" + this.getVersionStatus() + ", isDeleted=" + this.getIsDeleted() + ")";
+    }
+
+    public Integer getVersionStatus() {
+        return versionStatus;
+    }
+
+    public void setVersionStatus(Integer versionStatus) {
+        this.versionStatus = versionStatus;
     }
 }

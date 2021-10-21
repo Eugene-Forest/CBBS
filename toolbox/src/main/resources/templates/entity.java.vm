@@ -151,7 +151,7 @@ public class ${entity} {
         ", ${field.propertyName}=" + ${field.propertyName} +
     #end
   #end
-        "}";
+        "}" + super.toString() ;
     }
 #end
 }
