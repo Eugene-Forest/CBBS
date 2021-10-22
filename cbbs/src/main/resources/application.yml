@@ -23,3 +23,11 @@ mybatis-plus:
 #  mapper-locations: classpath:org/eugeneforest/cbbs/**/mapper/xml/*.xml
 
 
+knife4j:
+  # 基础认证
+  basic:
+    enable: false
+    username: eugene
+    password: forest
+  # Knife4j 增强模式
+  enable: false
