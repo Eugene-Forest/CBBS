@@ -2,12 +2,7 @@ package org.eugeneforest.toolbox.mp.generator;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.converts.SqlServerTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
-import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
-import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import org.eugeneforest.toolbox.mp.base.CustomizedEntity;
 import org.eugeneforest.toolbox.mp.base.CustomizedService;
 import org.eugeneforest.toolbox.mp.base.CustomizedServiceImpl;
@@ -25,56 +20,25 @@ import java.util.List;
 public class FastSqlGenerator{
 
     /**
-     * mssql的字段类型转换
-     */
-    protected static final SqlServerTypeConvert MSSQL_DEFAULT_TYPE_CONVERT= new SqlServerTypeConvert(){
-
-        @Override
-        public IColumnType processTypeConvert(GlobalConfig config, String fieldType) {
-            //自定义类型转换
-            String type=fieldType.toLowerCase();
-            if (type.contains("date") || type.contains("datetime")){
-                return DbColumnType.DATE;
-            }
-            return super.processTypeConvert(config, fieldType);
-        }
-    };
-
-    /**
-     * mysql的字段类型转换
-     */
-    protected static final MySqlTypeConvert MYSQL_DEFAULT_TYPE_CONVERT= new MySqlTypeConvert(){
-        @Override
-        public IColumnType processTypeConvert(GlobalConfig config, String fieldType) {
-            //自定义类型转换
-            String type=fieldType.toLowerCase();
-            if (type.contains("date") || type.contains("datetime")){
-                return DbColumnType.DATE;
-            }
-            return super.processTypeConvert(config, fieldType);
-        }
-    };
-
-
-    /**
      * mssql数据源配置
      */
-    private static final DataSourceConfig.Builder MSSQL_DATA_SOURCE_CONFIG = new DataSourceConfig
+    public static final DataSourceConfig.Builder MSSQL_DATA_SOURCE_CONFIG = new DataSourceConfig
             .Builder( "jdbc:sqlserver://localhost:1433;DatabaseName=cbbs",
-            "sa", "1244303915").typeConvert(MSSQL_DEFAULT_TYPE_CONVERT);
+            "sa", "1244303915").typeConvert(CustomizedTypeConvert.MSSQL_DEFAULT_TYPE_CONVERT);
 
     /**
      * mysql数据源配置
      */
-    private static final DataSourceConfig.Builder MYSQL_DATA_SOURCE_CONFIG = new DataSourceConfig
-            .Builder( "jdbc:mysql://localhost:3306/cbbs",
-            "root", "1244303915").typeConvert(MYSQL_DEFAULT_TYPE_CONVERT);
+    public static final DataSourceConfig.Builder MYSQL_DATA_SOURCE_CONFIG = new DataSourceConfig
+            .Builder( "jdbc:mysql://localhost:3306/xinfeng_cube",
+            "root", "1244303915").typeConvert(CustomizedTypeConvert.MYSQL_DEFAULT_TYPE_CONVERT);
+
 
     /**
      * 执行 run
      */
     public static void main(String[] args) {
-        FastAutoGenerator.create(MSSQL_DATA_SOURCE_CONFIG)
+        FastAutoGenerator.create(MYSQL_DATA_SOURCE_CONFIG)
                 // 全局配置
                 .globalConfig( builder -> builder
                         .fileOverride()

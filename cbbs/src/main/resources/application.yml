@@ -1,17 +1,17 @@
 spring:
   datasource:
-    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     #driver-class-name: org.postgresql.Driver
     #driver-class-name: oracle.jdbc.OracleDriver
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     #     SqlServer local test (recommend)
-    url: jdbc:sqlserver://localhost:1433;DatabaseName=cbbs
-    username: sa
-    password: 1244303915
-    #     mysql local
-#    url: jdbc:mysql://localhost:3306/bladex_boot?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
-#    username: root
+#    url: jdbc:sqlserver://localhost:1433;DatabaseName=cbbs
+#    username: sa
 #    password: 1244303915
+    #     mysql local
+    url: jdbc:mysql://localhost:3306/xinfeng_cube?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 1244303915
 
 mybatis-plus:
   global-config:

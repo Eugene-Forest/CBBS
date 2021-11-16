@@ -1,27 +1,19 @@
 package org.eugeneforest.cbbs.base.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import javax.annotation.Resource;
-import javax.validation.Valid;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-
+import org.eugeneforest.cbbs.base.entity.UserTable;
+import org.eugeneforest.cbbs.base.service.UserTableService;
 import org.eugeneforest.toolbox.api.Query;
 import org.eugeneforest.toolbox.api.R;
 import org.eugeneforest.toolbox.common.Func;
-
 import org.eugeneforest.toolbox.mp.tools.CustomizedCondition;
+import org.springframework.web.bind.annotation.*;
 
-import org.eugeneforest.cbbs.base.service.UserTableService;
-import org.eugeneforest.cbbs.base.entity.UserTable;
-
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * <p>
